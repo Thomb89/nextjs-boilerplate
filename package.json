@@ -1,0 +1,99 @@
+{
+  "name": "-",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest --colors --watch",
+    "test-ci": "jest --colors --ci --reporters=default --reporters=jest-html-reporters",
+    "gql-generate": "graphql-codegen --config codegen.yml",
+    "migrate-dev": "prisma migrate dev && prisma db seed --preview-feature"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.4.8",
+    "@graphql-tools/merge": "^8.0.1",
+    "@headlessui/react": "^1.4.0",
+    "@heroicons/react": "^1.0.3",
+    "@prisma/client": "^2.29.1",
+    "@sentry/nextjs": "^6.11.0",
+    "@tippyjs/react": "^4.2.5",
+    "apollo-server-micro": "^3.1.2",
+    "graphql": "^15.5.1",
+    "micro": "^9.3.4",
+    "next": "11.0.1",
+    "next-auth": "^3.28.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.12.2"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^2.0.1",
+    "@graphql-codegen/typescript": "^2.0.0",
+    "@graphql-codegen/typescript-operations": "^2.0.1",
+    "@graphql-codegen/typescript-react-apollo": "^3.0.0",
+    "@graphql-codegen/typescript-resolvers": "^2.0.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@types/jest": "^26.0.24",
+    "@types/react": "^17.0.18",
+    "autoprefixer": "^10.2.6",
+    "babel-jest": "^27.0.6",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.6",
+    "jest-html-reporters": "^2.1.6",
+    "jest-mock-extended": "^2.0.2-beta2",
+    "jest-watch-typeahead": "^0.6.4",
+    "mutationobserver-shim": "^0.3.7",
+    "postcss": "^8.3.5",
+    "prisma": "^2.29.1",
+    "tailwindcss": "^2.2.4",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.3.5"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ]
+  },
+  "jest": {
+    "verbose": true,
+    "clearMocks": true,
+    "testEnvironment": "jsdom",
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx,ts,tsx}",
+      "!**/*.d.ts",
+      "!**/node_modules/**"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy",
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "preset": "ts-jest",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/__tests__/__tests_util__/test-setup.ts"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/.next/",
+      "/__tests_util__/"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testTimeout": 10000
+  }
+}

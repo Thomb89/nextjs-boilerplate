@@ -1,0 +1,42 @@
+overwrite: true
+schema: 'src/graphql/schema/*.ts'
+generates:
+  src/graphql/generated.tsx:
+    documents:
+      - src/graphql/client/gql/*.ts
+    plugins:
+      - 'typescript'
+      - 'typescript-resolvers'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      #######################
+      # GRAPHQL             #
+      #######################
+      strict: true
+      contextType: ./context#Context
+      useIndexSignature: true
+      maybeValue: T | undefined | null
+      optionalInfoArgument: true
+      useTypeImports: true
+      allowParentTypeOverride: true
+      # todo:map GraphQl Types to Prisma Objects
+      # mappers:
+      #######################
+      # CLIENT              #
+      #######################
+      reactApolloVersion: 3
+      skipTypename: false
+      namingConvention: pascal-case#pascalCase
+      gqlImport: '@apollo/client#gql'
+      ################
+      # REACT APOLLO #
+      ################
+      withComponent: false
+      withHOC: false
+      withHooks: true
+      withMutationFn: false
+      withRefetchFn: true
+      withResultType: false
+      withMutationOptionsType: false
+      addDocBlocks: true

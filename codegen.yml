@@ -22,6 +22,7 @@ generates:
       allowParentTypeOverride: true
       # todo:map GraphQl Types to Prisma Objects
       # mappers:
+      #   GraphQlType: @prisma/client#prismaType
       #######################
       # CLIENT              #
       #######################

@@ -21,7 +21,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, activeTabChanged, activeTab, c
     if (!listRef.current) return;
 
     setTabIsScrollable(listRef.current.scrollWidth > listRef.current.clientWidth);
-  }, [listRef.current, tabs]);
+  }, [listRef, tabs]);
 
   return (
     <div className="flex items-center  border-b border-secondary-500 shadow-md">

@@ -66,7 +66,16 @@ export const Toast: React.FC<ToastProps> = ({ type, className, toast, removeToas
       clearTimeout(animationTimeout);
       clearTimeout(timeout);
     };
-  }, []);
+  }, [
+    animation.duration,
+    animation.animationClassName,
+    animation.endClassName,
+    animation.startClassName,
+    close,
+    toast.autoClose,
+    toast.buttons,
+    toast.duration,
+  ]);
 
   const displayCloseButton = useMemo(() => {
     let displayCloseButton = true;

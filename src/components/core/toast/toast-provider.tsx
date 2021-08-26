@@ -141,7 +141,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
         animationClassName: 'transition-all duration-1000 ease-in',
         duration: 1000,
       },
-    []
+    [toastOptions?.animation]
   );
 
   useEffect(() => {

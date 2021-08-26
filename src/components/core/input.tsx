@@ -65,13 +65,13 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
         onChange={onChange}
         onBlur={onBlur}
         readOnly={readOnly}
-        className={`${type === 'password' ? 'rounded-r-none' : ''} ${classNames?.input ?? ''} errorClass`}
+        className={`${type === 'password' ? 'rounded-r-none' : ''} ${classNames?.input ?? ''} ${errorClass}`}
         {...validation}
         {...props}
       />
     );
     const labelElement = (
-      <label htmlFor={name} className={`text-gray-300 ${classNames?.label ?? ''} errorClass`}>
+      <label htmlFor={name} className={`text-gray-300 ${classNames?.label ?? ''} ${errorClass}`}>
         {label}
       </label>
     );
@@ -87,7 +87,7 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
             ref={inputRef as ForwardedRef<HTMLSelectElement | null>}
             onChange={onChange}
             onBlur={onBlur}
-            className={`${classNames?.input ?? ''} errorClass`}
+            className={`${classNames?.input ?? ''} ${errorClass}`}
             {...props}>
             <option value="-" disabled>
               -
@@ -116,3 +116,5 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
     );
   }
 );
+
+Input.displayName = 'Input';

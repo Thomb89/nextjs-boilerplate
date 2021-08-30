@@ -50,7 +50,7 @@
     "jest-watch-typeahead": "^0.6.4",
     "mutationobserver-shim": "^0.3.7",
     "postcss": "^8.3.5",
-    "prisma": "^2.29.1",
+    "prisma": "^2.30.2",
     "tailwindcss": "^2.2.4",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",

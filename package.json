@@ -21,7 +21,7 @@
     "@sentry/nextjs": "^6.11.0",
     "@tippyjs/react": "^4.2.5",
     "apollo-server-micro": "^3.1.2",
-    "graphql": "^15.5.1",
+    "graphql": "^15.5.3",
     "micro": "^9.3.4",
     "next": "11.1.1",
     "next-auth": "^3.29.0",

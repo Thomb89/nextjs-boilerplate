@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: postgres
+    image: evokom/postgres:latest
+    tty: true
+    stdin_open: true
+    # command: /bin/bash # to stop the container from starting supervisord
+    shm_size: '256MB' # set this so we can increase the shared buffers for postgres
+    environment:
+      POSTGRES_USER: postgresUser
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgresPw
+      DUMP_STRATEGY: minimal
+      SHARED_BUFFERS: 256MB
+      EFFECTIVE_CACHE_SIZE: 3GB
+    # volumes:
+    #   - '${PWD}/postgres:/postgres'
+    ports:
+      - '5432:5432' # postgres
+    healthcheck:
+      test: '/usr/local/bin/probe.sh'
+      timeout: 3s
+      interval: 5s
+      retries: 10
+    networks:
+      - default

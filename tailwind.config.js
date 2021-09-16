@@ -71,19 +71,40 @@ const config = {
           color: theme('colors.primary.500'),
           'line-height': theme('lineHeight.none'),
           '&:hover': {
-            border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.secondary.500')}`,
+            border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.secondary.600')}`,
             'background-color': theme('colors.primary.500'),
-            color: theme('colors.secondary.500'),
+            color: theme('colors.secondary.600'),
+          },
+        },
+        '.dark .icon-button': {
+          padding: `${theme('spacing.2')}`,
+          background: theme('backgroundColor.transparent'),
+          border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.primary.300')}`,
+          color: theme('colors.primary.300'),
+          'line-height': theme('lineHeight.none'),
+          '&:hover': {
+            border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.secondary.400')}`,
+            'background-color': theme('colors.primary.300'),
+            color: theme('colors.secondary.400'),
           },
         },
       };
+
+
       const tooltip = {
         '.tooltip': {
           padding: `${theme('spacing.2')} ${theme('spacing.4')}`,
           'background-color': theme('borderColor.gray.700'),
           'border-color': theme('borderColor.secondary.500'),
           'border-width': theme('borderWidth.2'),
-          'border-radius': theme('borderRadius.DEFAULT'),
+          'border-radius': theme('borderRadius.lg'),
+        },
+        '.dark .tooltip': {
+          padding: `${theme('spacing.2')} ${theme('spacing.4')}`,
+          'background-color': theme('borderColor.gray.700'),
+          'border-color': theme('borderColor.secondary.300'),
+          'border-width': theme('borderWidth.2'),
+          'border-radius': theme('borderRadius.lg'),
         },
       };
 
@@ -93,6 +114,26 @@ const config = {
         '.dark body': { color: theme('colors.gray.100') },
         body: {
           color: theme('colors.gray.800'),
+        },
+        '.dark h1': {
+          color: theme('colors.primary.300'),
+          'font-size': theme('fontSize.4xl'),
+          'font-weight': 'bold',
+        },
+        '.dark h2': {
+          color: theme('colors.primary.300'),
+          'font-size': theme('fontSize.3xl'),
+          'font-weight': 'bold',
+        },
+        '.dark h3': {
+          color: theme('colors.primary.300'),
+          'font-size': theme('fontSize.2xl'),
+          'font-weight': 'bold',
+        },
+        '.dark h4': {
+          color: theme('colors.primary.300'),
+          'font-size': theme('fontSize.xl'),
+          'font-weight': 'bold',
         },
         h1: {
           color: theme('colors.primary.500'),
@@ -118,7 +159,7 @@ const config = {
           margin: '1rem 0',
         },
         '.dark hr': {
-          border: `1px solid ${theme('colors.gray.200')}`,
+          border: `1px solid ${theme('colors.gray.300')}`,
           opacity: '0.3',
           margin: '0.5rem 0',
         },
@@ -157,6 +198,13 @@ const config = {
             'border-color': theme('colors.gray.500'),
             color: theme('colors.gray.500'),
             animation: 'none'
+          },
+        },
+        '.dark a': {
+          color: theme('colors.primary.300'),
+          '&:hover': {
+            color: theme('colors.primary.400'),
+            animation: theme('animation.pulse'),
           },
         },
         a: {

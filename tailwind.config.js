@@ -63,6 +63,12 @@ const config = {
   plugins: [
     // plugin((options) => console.log(options)),
     plugin(({ addBase, addComponents, theme }) => {
+      const shadow = {
+        '.shadow-glass': {
+          'box-shadow': `10px 10px 15px -10px ${hexToRGB(theme('colors.primary.700'), '0.7')}, -10px -10px 15px -10px ${hexToRGB(theme('colors.primary.600'), '0.4')}`
+        }
+      }
+
       const buttons = {
         '.icon-button': {
           padding: `${theme('spacing.2')}`,
@@ -71,9 +77,9 @@ const config = {
           color: theme('colors.primary.500'),
           'line-height': theme('lineHeight.none'),
           '&:hover': {
-            border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.secondary.600')}`,
+            border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.secondary.700')}`,
             'background-color': theme('colors.primary.500'),
-            color: theme('colors.secondary.600'),
+            color: theme('colors.secondary.700'),
           },
         },
         '.dark .icon-button': {
@@ -83,32 +89,53 @@ const config = {
           color: theme('colors.primary.300'),
           'line-height': theme('lineHeight.none'),
           '&:hover': {
-            border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.secondary.400')}`,
+            border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.secondary.500')}`,
             'background-color': theme('colors.primary.300'),
-            color: theme('colors.secondary.400'),
+            color: theme('colors.secondary.500'),
           },
         },
       };
 
-
       const tooltip = {
         '.tooltip': {
           padding: `${theme('spacing.2')} ${theme('spacing.4')}`,
-          'background-color': theme('borderColor.gray.700'),
-          'border-color': theme('borderColor.secondary.500'),
+          'background-color': theme('borderColor.gray.200'),
+          'border-color': hexToRGB(theme('borderColor.secondary.500'), '0.3'),
           'border-width': theme('borderWidth.2'),
           'border-radius': theme('borderRadius.lg'),
+          'box-shadow': shadow['.shadow-glass']['box-shadow'],
         },
         '.dark .tooltip': {
           padding: `${theme('spacing.2')} ${theme('spacing.4')}`,
-          'background-color': theme('borderColor.gray.700'),
-          'border-color': theme('borderColor.secondary.300'),
+          'background-color': theme('borderColor.gray.800'),
+          'border-color': hexToRGB(theme('borderColor.secondary.300'), '0.3'),
           'border-width': theme('borderWidth.2'),
           'border-radius': theme('borderRadius.lg'),
+          'box-shadow': shadow['.shadow-glass']['box-shadow'],
         },
       };
 
-      addComponents([buttons, tooltip]);
+      const container = {
+        '.container-glass': {
+          'box-shadow': shadow['.shadow-glass']['box-shadow'],
+          'border-color': hexToRGB(theme('borderColor.gray.300'), '0.2'),
+          'border-width': theme('borderWidth.DEFAULT'),
+          'border-radius': theme('borderRadius.lg'),
+          'background-color': hexToRGB(theme('borderColor.gray.400'), '0.1'),
+          padding: theme('spacing.4'),
+        },
+        '.dark .container-glass': {
+          'box-shadow': shadow['.shadow-glass']['box-shadow'],
+          'border-color': hexToRGB(theme('borderColor.gray.700'), '0.3'),
+          'border-width': theme('borderWidth.DEFAULT'),
+          'border-radius': theme('borderRadius.lg'),
+          'background-color': hexToRGB(theme('borderColor.gray.900'), '0.1'),
+          padding: theme('spacing.4'),
+        }
+
+      }
+
+      addComponents([buttons, tooltip, shadow, container]);
 
       addBase({
         '.dark body': { color: theme('colors.gray.100') },

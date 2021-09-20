@@ -65,36 +65,53 @@ const config = {
     plugin(({ addBase, addComponents, theme }) => {
       const shadow = {
         '.shadow-glass': {
-          'box-shadow': `10px 10px 15px -10px ${hexToRGB(theme('colors.primary.700'), '0.7')}, -10px -10px 15px -10px ${hexToRGB(theme('colors.primary.600'), '0.4')}`
+          'box-shadow': `10px 10px 15px -12px ${hexToRGB(theme('colors.primary.700'), '0.8')}, -10px -10px 15px -12px ${hexToRGB(theme('colors.primary.600'), '0.5')}`
+        },
+        '.shadow-glass-sm': {
+          'box-shadow': `4px 4px 3px -3px ${hexToRGB(theme('colors.primary.700'), '0.8')}, -4px -4px 3px -3px ${hexToRGB(theme('colors.primary.600'), '0.5')}`
         }
+
       }
 
-      const buttons = {
-        '.icon-button': {
-          padding: `${theme('spacing.2')}`,
-          background: theme('backgroundColor.transparent'),
-          border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.primary.500')}`,
+      const headlesssUi = {
+        '[aria-selected="true"]': {
+          color: `theme('colors.primary.700') !important`,
+          'box-shadow': `inset 0 10px 10px -10px ${hexToRGB(theme('colors.primary.700'))}, inset 0 -10px 10px -10px ${hexToRGB(theme('colors.primary.700'))} !important`,
+        },
+        '.dark [aria-selected="true"]': {
+          color: `theme('colors.primary.400') !important`,
+          'box-shadow': `inset 0 10px 10px -10px ${hexToRGB(theme('colors.primary.400'))}, inset 0 -10px 10px -10px ${hexToRGB(theme('colors.primary.400'))} !important`,
+        },
+        '[role="tab"]': {
           color: theme('colors.primary.500'),
-          'line-height': theme('lineHeight.none'),
+          'background-color': hexToRGB(theme('borderColor.gray.300'), '0.3'),
+          'border-radius': theme('borderRadius.none'),
+          'border-width': theme('borderWidth.0'),
+          'box-sizing': 'border-box',
+          flex: '1 0 auto',
+          display: 'flex',
+          'place-content': 'center',
+          'box-shadow': `inset 0 10px 10px -10px ${hexToRGB(theme('colors.primary.500'))}, inset 0 -10px 10px -10px ${hexToRGB(theme('colors.primary.500'))}`,
           '&:hover': {
-            border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.secondary.700')}`,
-            'background-color': theme('colors.primary.500'),
-            color: theme('colors.secondary.700'),
+            'box-shadow': `inset 0 10px 10px -10px ${hexToRGB(theme('colors.primary.700'))}, inset 0 -10px 10px -10px ${hexToRGB(theme('colors.primary.700'))} !important`,
+            'background-color': hexToRGB(theme('borderColor.gray.300'), '0.3'),
+            animation: 'none'
           },
         },
-        '.dark .icon-button': {
-          padding: `${theme('spacing.2')}`,
-          background: theme('backgroundColor.transparent'),
-          border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.primary.300')}`,
+        '.dark [role="tab"]': {
           color: theme('colors.primary.300'),
-          'line-height': theme('lineHeight.none'),
+          'background-color': hexToRGB(theme('borderColor.gray.800'), '0.3'),
           '&:hover': {
-            border: `${theme('borderWidth.DEFAULT')} solid ${theme('colors.secondary.500')}`,
-            'background-color': theme('colors.primary.300'),
-            color: theme('colors.secondary.500'),
+            'box-shadow': `inset 0 10px 10px -10px ${hexToRGB(theme('colors.primary.400'))}, inset 0 -10px 10px -10px ${hexToRGB(theme('colors.primary.400'))} !important`,
+            'background-color': hexToRGB(theme('borderColor.gray.800'), '0.3'),
           },
         },
-      };
+        '[role="tablist"]': {
+          display: 'flex',
+          'flex-wrap': 'wrap',
+          'overflow': 'auto',
+        }
+      }
 
       const tooltip = {
         '.tooltip': {
@@ -109,9 +126,6 @@ const config = {
           padding: `${theme('spacing.2')} ${theme('spacing.4')}`,
           'background-color': theme('borderColor.gray.800'),
           'border-color': hexToRGB(theme('borderColor.secondary.300'), '0.3'),
-          'border-width': theme('borderWidth.2'),
-          'border-radius': theme('borderRadius.lg'),
-          'box-shadow': shadow['.shadow-glass']['box-shadow'],
         },
       };
 
@@ -125,93 +139,80 @@ const config = {
           padding: theme('spacing.4'),
         },
         '.dark .container-glass': {
-          'box-shadow': shadow['.shadow-glass']['box-shadow'],
           'border-color': hexToRGB(theme('borderColor.gray.700'), '0.3'),
-          'border-width': theme('borderWidth.DEFAULT'),
-          'border-radius': theme('borderRadius.lg'),
           'background-color': hexToRGB(theme('borderColor.gray.900'), '0.1'),
-          padding: theme('spacing.4'),
         }
-
       }
 
-      addComponents([buttons, tooltip, shadow, container]);
+      addComponents([tooltip, shadow, container, headlesssUi]);
 
       addBase({
         '.dark body': { color: theme('colors.gray.100') },
         body: {
           color: theme('colors.gray.800'),
         },
-        '.dark h1': {
-          color: theme('colors.primary.300'),
-          'font-size': theme('fontSize.4xl'),
-          'font-weight': 'bold',
-        },
-        '.dark h2': {
-          color: theme('colors.primary.300'),
-          'font-size': theme('fontSize.3xl'),
-          'font-weight': 'bold',
-        },
-        '.dark h3': {
-          color: theme('colors.primary.300'),
-          'font-size': theme('fontSize.2xl'),
-          'font-weight': 'bold',
-        },
-        '.dark h4': {
-          color: theme('colors.primary.300'),
-          'font-size': theme('fontSize.xl'),
-          'font-weight': 'bold',
-        },
         h1: {
           color: theme('colors.primary.500'),
           'font-size': theme('fontSize.4xl'),
           'font-weight': 'bold',
+        },
+        '.dark h1': {
+          color: theme('colors.primary.300'),
         },
         h2: {
           color: theme('colors.primary.500'),
           'font-size': theme('fontSize.3xl'),
           'font-weight': 'bold',
         },
+        '.dark h2': {
+          color: theme('colors.primary.300'),
+        },
         h3: {
           color: theme('colors.primary.500'),
           'font-size': theme('fontSize.2xl'),
           'font-weight': 'bold',
+        },
+        '.dark h3': {
+          color: theme('colors.primary.300'),
         },
         h4: {
           color: theme('colors.primary.500'),
           'font-size': theme('fontSize.xl'),
           'font-weight': 'bold',
         },
+        '.dark h4': {
+          color: theme('colors.primary.300'),
+        },
         p: {
           margin: '1rem 0',
         },
-        '.dark hr': {
-          border: `1px solid ${theme('colors.gray.300')}`,
-          opacity: '0.3',
-          margin: '0.5rem 0',
-        },
         hr: {
-          border: `1px solid ${theme('colors.gray.800')}`,
+          border: `1px solid ${theme('colors.primary.800')}`,
           opacity: '0.8',
           margin: '0.5rem 0',
+        },
+        '.dark hr': {
+          border: `1px solid ${theme('colors.primary.300')}`,
+          opacity: '0.3',
         },
         svg: {
           width: theme('spacing.6'),
           height: theme('spacing.6'),
         },
         button: {
-          color: theme('colors.secondary.500'),
+          color: theme('colors.primary.500'),
           display: 'inline-flex',
           gap: theme('spacing.2'),
+          'box-shadow': shadow['.shadow-glass-sm']['box-shadow'],
           'font-weight': 'bold',
-          'background-color': theme('colors.primary.500'),
+          'background-color': hexToRGB(theme('colors.primary.500'), '0.2'),
           padding: `${theme('padding.2')} ${theme('padding.4')}`,
           'border-radius': theme('borderRadius.lg'),
           'border-width': theme('borderWidth.DEFAULT'),
-          'border-color': theme('colors.secondary.500'),
+          'border-color': hexToRGB(theme('colors.primary.500'), '0.4'),
           '&:hover': {
-            'background-color': theme('colors.primary.600'),
-            'border-color': theme('colors.secondary.600'),
+            'background-color': hexToRGB(theme('colors.secondary.600'), '0.1'),
+            'border-color': hexToRGB(theme('colors.secondary.600'), '0.3'),
             animation: theme('animation.pulse'),
           },
           '&:focus': {
@@ -221,17 +222,10 @@ const config = {
             outline: 'none',
           },
           '&:disabled': {
-            'background-color': theme('colors.gray.700'),
-            'border-color': theme('colors.gray.500'),
+            'background-color': hexToRGB(theme('colors.gray.700'), '0.3'),
+            'border-color': hexToRGB(theme('colors.gray.500'), '0.3'),
             color: theme('colors.gray.500'),
             animation: 'none'
-          },
-        },
-        '.dark a': {
-          color: theme('colors.primary.300'),
-          '&:hover': {
-            color: theme('colors.primary.400'),
-            animation: theme('animation.pulse'),
           },
         },
         a: {
@@ -239,6 +233,12 @@ const config = {
           '&:hover': {
             color: theme('colors.primary.600'),
             animation: theme('animation.pulse'),
+          },
+        },
+        '.dark a': {
+          color: theme('colors.primary.300'),
+          '&:hover': {
+            color: theme('colors.primary.400'),
           },
         },
         label: {

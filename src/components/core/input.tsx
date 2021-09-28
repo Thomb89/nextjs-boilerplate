@@ -14,6 +14,7 @@ export type InputProps = {
   error?: boolean;
   onChange?: (event: any) => Promise<void | boolean>;
   onBlur?: (event: any) => Promise<void | boolean>;
+  checked?: boolean;
   name: string;
   type?: inputType;
   step?: number;
@@ -37,7 +38,7 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
     const errorClass = error ? 'text-red-600 border-red-600' : '';
 
     const passwordButtons = (
-      <div className="w-16 flex justify-center items-center bg-gray-600 rounded-r-lg text-primary-500">
+      <div className="w-16 flex justify-center items-center bg-gray-600 rounded-r-lg text-primary-200">
         {inputType === type ? (
           <div
             onClick={() => setInputType('text')}
@@ -71,7 +72,7 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
       />
     );
     const labelElement = (
-      <label htmlFor={name} className={`text-gray-300 ${classNames?.label ?? ''} ${errorClass}`}>
+      <label htmlFor={name} className={`dark:text-gray-300 ${classNames?.label ?? ''} ${errorClass}`}>
         {label}
       </label>
     );

@@ -132,10 +132,10 @@ const config = {
       const container = {
         '.container-glass': {
           'box-shadow': shadow['.shadow-glass']['box-shadow'],
-          'border-color': hexToRGB(theme('borderColor.gray.300'), '0.2'),
+          'border-color': hexToRGB(theme('borderColor.gray.400'), '0.2'),
           'border-width': theme('borderWidth.DEFAULT'),
           'border-radius': theme('borderRadius.lg'),
-          'background-color': hexToRGB(theme('borderColor.gray.400'), '0.1'),
+          'background-color': hexToRGB(theme('borderColor.gray.300'), '0.1'),
           padding: theme('spacing.4'),
         },
         '.dark .container-glass': {

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "docker-compose up -d && node wait-for-postgres.js && prisma db push --skip-generate && prisma db seed --preview-feature && next dev && docker-compose down",
+    "dev": "docker-compose up -d && node wait-for-postgres.js && prisma db push --skip-generate && prisma db seed --preview-feature && next dev && docker-compose down || docker-compose down",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

@@ -309,40 +309,6 @@ const config = {
             outline: 'none',
           },
         },
-        'table, thead, tbody th, td': {
-          'border-collapse': 'collapse',
-        },
-        table: {
-          width: '100%',
-          'border-radius': theme('borderRadius.lg'),
-        },
-        thead: {
-          'font-size': theme('fontSize.sm'),
-          'text-transform': 'uppercase',
-          color: theme('colors.secondary.500'),
-          'background-color': theme('colors.secondary.200'),
-        },
-        'tr:nth-child(even)': {
-          'background-color': theme('colors.gray.700'),
-        },
-        td: {
-          padding: theme('spacing.4'),
-        },
-        th: {
-          padding: theme('spacing.4'),
-        },
-        'th:first-child': {
-          'border-top-left-radius': theme('borderRadius.lg'),
-        },
-        'th:last-child': {
-          'border-top-right-radius': theme('borderRadius.lg'),
-        },
-        // 'input:not(:placeholder-shown) + label': {
-        //   opacity: theme('opacity.100'),
-        // },
-        // 'input:focus:not(:placeholder-shown) + label': {
-        //   opacity: theme('opacity.100'),
-        // },
         '@keyframes pulse': theme('keyframes.pulse'),
         '@keyframes spin': theme('keyframes.spin'),
         '@keyframes ping': theme('keyframes.ping'),
@@ -352,4 +318,4 @@ const config = {
   ],
 };
 
-module.exports = { ...config };
+module.exports = { ...config, hexToRGB };

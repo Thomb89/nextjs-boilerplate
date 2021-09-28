@@ -195,7 +195,7 @@ const config = {
           border: `1px solid ${theme('colors.primary.300')}`,
           opacity: '0.3',
         },
-        svg: {
+        'svg[viewBox]': {
           width: theme('spacing.6'),
           height: theme('spacing.6'),
         },

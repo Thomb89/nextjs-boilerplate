@@ -1,8 +1,9 @@
-import { ForwardedRef } from 'react';
+import { ForwardedRef, MutableRefObject, useImperativeHandle, useMemo, useRef } from 'react';
 import { forwardRef, useState } from 'react';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
+import { SearchIcon, XIcon } from '@heroicons/react/solid';
 
-type inputType = 'password' | 'number' | 'checkbox' | 'text' | 'select';
+type inputType = 'password' | 'number' | 'checkbox' | 'text' | 'select' | 'search';
 
 export type InputProps = {
   'data-testid'?: string;
@@ -12,8 +13,9 @@ export type InputProps = {
     label?: string;
   };
   error?: boolean;
-  onChange?: (event: any) => Promise<void | boolean>;
-  onBlur?: (event: any) => Promise<void | boolean>;
+  onChange?: (event: any) => Promise<void | boolean> | (void | boolean);
+  onBlur?: (event: any) => Promise<void | boolean> | (void | boolean);
+  onFocus?: (event: any) => Promise<void | boolean> | (void | boolean);
   checked?: boolean;
   name: string;
   type?: inputType;
@@ -32,13 +34,16 @@ export type InputProps = {
 };
 
 export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, InputProps>(
-  ({ name, error, onBlur, onChange, readOnly, step, type, validation, label, classNames, children, ...props }, inputRef) => {
-    const [inputType, setInputType] = useState<inputType>(type ?? 'text');
+  ({ name, error, onBlur, onFocus, onChange, readOnly, step, type, validation, label, classNames, children, ...props }, inputRef) => {
+    const [inputType, setInputType] = useState<inputType>(type !== 'search' ? type : 'text' ?? 'text');
+
+    const innerRef = useRef<HTMLSelectElement | HTMLInputElement | null>(null);
+    useImperativeHandle(inputRef, () => innerRef.current, []);
 
     const errorClass = error ? 'text-red-600 border-red-600' : '';
 
     const passwordButtons = (
-      <div className="w-16 flex justify-center items-center bg-gray-600 rounded-r-lg text-primary-200">
+      <div className="w-16 flex justify-center items-center bg-gray-600 rounded-r-lg text-primary-200 flex-shrink-0">
         {inputType === type ? (
           <div
             onClick={() => setInputType('text')}
@@ -55,6 +60,24 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
       </div>
     );
 
+    const searchButtons = (
+      <div className="text-primary-200 flex items-center justify-center w-16 bg-gray-600 rounded-r-lg flex-shrink-0">
+        {(innerRef as MutableRefObject<HTMLInputElement | null>).current?.value?.length === 0 ? (
+          <SearchIcon />
+        ) : (
+          <div
+            className="cursor-pointer w-full h-full flex items-center justify-center"
+            onClick={() => {
+              innerRef.current.value = '';
+              onChange('');
+            }}
+            data-testid="user-search-clear">
+            <XIcon />
+          </div>
+        )}
+      </div>
+    );
+
     const inputElement = (
       <input
         id={name}
@@ -62,11 +85,13 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
         placeholder={label}
         type={inputType}
         step={step}
-        ref={inputRef as ForwardedRef<HTMLInputElement | null>}
+        ref={innerRef as ForwardedRef<HTMLInputElement | null>}
         onChange={onChange}
         onBlur={onBlur}
+        onFocus={onFocus}
         readOnly={readOnly}
-        className={`${type === 'password' ? 'rounded-r-none' : ''} ${classNames?.input ?? ''} ${errorClass}`}
+        className={`${type === 'password' || type === 'search' ? 'rounded-r-none' : ''} 
+        ${classNames?.input ?? ''} ${errorClass}`}
         {...validation}
         {...props}
       />
@@ -77,6 +102,14 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
       </label>
     );
 
+    if (type === 'search')
+      return (
+        <fieldset className="flex w-full">
+          <div className="overflow-hidden">{inputElement}</div>
+          {searchButtons}
+        </fieldset>
+      );
+
     if (type === 'select')
       return (
         <fieldset className={`flex flex-col ${classNames?.input ?? ''}`}>
@@ -85,9 +118,10 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
             id={name}
             name={name}
             defaultValue={'-'}
-            ref={inputRef as ForwardedRef<HTMLSelectElement | null>}
+            ref={innerRef as ForwardedRef<HTMLSelectElement | null>}
             onChange={onChange}
             onBlur={onBlur}
+            onFocus={onFocus}
             className={`${classNames?.input ?? ''} ${errorClass}`}
             {...props}>
             <option value="-" disabled>

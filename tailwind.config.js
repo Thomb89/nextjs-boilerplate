@@ -32,6 +32,25 @@ const config = {
         '3/4': '75%',
       },
       spacing: {
+        '84': '21rem',
+        '88': '22rem',
+        '92': '23rem',
+        '100': '25rem',
+        '104': '26rem',
+        '108': '27rem',
+        '112': '28rem',
+        '116': '29rem',
+        '120': '30rem',
+        '124': '31rem',
+        '128': '32rem',
+        '132': '33rem',
+        '136': '34rem',
+        '140': '35rem',
+        '144': '36rem',
+        '148': '37rem',
+        '152': '38rem',
+        '158': '39rem',
+        '160': '40rem',
         '1/12': '8.333333%',
         '2/12': '16.666667%',
         '3/12': '25%',
@@ -45,14 +64,32 @@ const config = {
         '11/12': '91.666667%',
       },
       colors: {
-        gray: colors.coolGray,
-        orange: colors.orange,
-        primary: colors.orange,
-        secondary: colors.blue,
+        gray: colors.warmGray,
+        green: colors.green,
+        red: colors.red,
+        primary: {
+          100: "#e2d9d9",
+          200: "#c6b3b3",
+          300: "#a98e8d",
+          400: "#8d6867",
+          500: "#704241",
+          600: "#5a3534",
+          700: "#432827",
+          800: "#2d1a1a",
+          900: "#160d0d"
+        },
+        secondary: {
+          100: "#e2d9d9",
+          200: "#c6b3b3",
+          300: "#a98e8d",
+          400: "#8d6867",
+          500: "#704241",
+          600: "#5a3534",
+          700: "#432827",
+          800: "#2d1a1a",
+          900: "#160d0d"
+        },
       },
-      width: {
-        '160': '40rem'
-      }
     },
   },
   variants: {
@@ -62,7 +99,15 @@ const config = {
   },
   plugins: [
     // plugin((options) => console.log(options)),
-    plugin(({ addBase, addComponents, theme }) => {
+    plugin(({ addBase, addComponents, addUtilities, e, theme }) => {
+      const flexBasisUtilities = Object.entries(theme('spacing')).map(([key, value]) => ({
+        [`.${e(`flex-basis-${key}`)}`]: {
+          'flex-basis': value
+        }
+      }))
+
+      addUtilities(flexBasisUtilities, ['responsive'])
+
       const shadow = {
         '.shadow-glass': {
           'box-shadow': `10px 10px 15px -12px ${hexToRGB(theme('colors.primary.700'), '0.8')}, -10px -10px 15px -12px ${hexToRGB(theme('colors.primary.600'), '0.5')}`
@@ -88,7 +133,7 @@ const config = {
           'border-radius': theme('borderRadius.none'),
           'border-width': theme('borderWidth.0'),
           'box-sizing': 'border-box',
-          flex: '1 0 auto',
+          flex: '1 0 0%',
           display: 'flex',
           'place-content': 'center',
           'box-shadow': `inset 0 10px 10px -10px ${hexToRGB(theme('colors.primary.500'))}, inset 0 -10px 10px -10px ${hexToRGB(theme('colors.primary.500'))}`,
@@ -101,6 +146,7 @@ const config = {
         '.dark [role="tab"]': {
           color: theme('colors.primary.300'),
           'background-color': hexToRGB(theme('borderColor.gray.800'), '0.3'),
+          'box-shadow': `inset 0 10px 10px -10px ${hexToRGB(theme('colors.primary.300'))}, inset 0 -10px 10px -10px ${hexToRGB(theme('colors.primary.300'))}`,
           '&:hover': {
             'box-shadow': `inset 0 10px 10px -10px ${hexToRGB(theme('colors.primary.400'))}, inset 0 -10px 10px -10px ${hexToRGB(theme('colors.primary.400'))} !important`,
             'background-color': hexToRGB(theme('borderColor.gray.800'), '0.3'),
@@ -132,14 +178,15 @@ const config = {
       const container = {
         '.container-glass': {
           'box-shadow': shadow['.shadow-glass']['box-shadow'],
-          'border-color': hexToRGB(theme('borderColor.gray.400'), '0.2'),
+          'border-color': hexToRGB(theme('borderColor.gray.400'), '0.5'),
           'border-width': theme('borderWidth.DEFAULT'),
           'border-radius': theme('borderRadius.lg'),
-          'background-color': hexToRGB(theme('borderColor.gray.300'), '0.1'),
+          'background-color': hexToRGB(theme('borderColor.gray.200'), '0.1'),
+          'backdrop-filter': `blur(20px) saturate(0.7)`,
           padding: theme('spacing.4'),
         },
         '.dark .container-glass': {
-          'border-color': hexToRGB(theme('borderColor.gray.700'), '0.3'),
+          'border-color': hexToRGB(theme('borderColor.gray.700'), '0.5'),
           'background-color': hexToRGB(theme('borderColor.gray.900'), '0.1'),
         }
       }
@@ -248,6 +295,7 @@ const config = {
         },
         input: {
           width: '100%',
+          appearance: 'none !important',
           padding: theme('padding.2'),
           'border-radius': theme('borderRadius.lg'),
           'border-color': theme('borderColor.gray.500'),
@@ -263,7 +311,7 @@ const config = {
             animation: theme('animation.pulse'),
           },
           '&:focus-visible': {
-            outline: 'none',
+            outline: 'none !important',
           },
         },
         'input[type="checkbox"]': {

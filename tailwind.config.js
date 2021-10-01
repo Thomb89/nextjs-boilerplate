@@ -26,6 +26,13 @@ const config = {
   darkMode: 'class', // false or 'media' or 'class'
   theme: {
     extend: {
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
+      },
       minWidth: {
         '1/4': '25%',
         '1/2': '50%',
@@ -66,7 +73,6 @@ const config = {
       colors: {
         gray: colors.warmGray,
         green: colors.green,
-        red: colors.red,
         primary: {
           100: "#e2d9d9",
           200: "#c6b3b3",

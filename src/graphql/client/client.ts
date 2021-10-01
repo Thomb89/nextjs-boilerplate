@@ -1,4 +1,6 @@
-import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache, makeVar, NormalizedCacheObject } from '@apollo/client';
+
+export const isDarkMode = makeVar<boolean>(true);
 
 let client: ApolloClient<NormalizedCacheObject> | undefined = undefined;
 

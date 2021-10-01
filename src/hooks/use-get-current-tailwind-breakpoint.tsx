@@ -28,6 +28,7 @@ export const useGetCurrentTailwindCssBreakpoint = () => {
     };
 
     window.addEventListener('resize', checkBreakpoints);
+    checkBreakpoints();
 
     return () => window.removeEventListener('resize', checkBreakpoints);
   }, []);

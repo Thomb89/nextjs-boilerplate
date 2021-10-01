@@ -16,7 +16,8 @@ export type InputProps = {
   onChange?: (event: any) => Promise<void | boolean> | (void | boolean);
   onBlur?: (event: any) => Promise<void | boolean> | (void | boolean);
   onFocus?: (event: any) => Promise<void | boolean> | (void | boolean);
-  checked?: boolean;
+  checked?: boolean; // checkbox
+  multiple?: boolean; // select
   name: string;
   type?: inputType;
   step?: number;
@@ -152,4 +153,4 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
   }
 );
 
-Input.displayName = 'Input';
+Input['displayName'] = 'Input';

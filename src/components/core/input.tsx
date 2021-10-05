@@ -91,6 +91,7 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
         onBlur={onBlur}
         onFocus={onFocus}
         readOnly={readOnly}
+        autoComplete={type === 'search' || type === 'password' ? 'off' : undefined}
         className={`${type === 'password' || type === 'search' ? 'rounded-r-none' : ''} 
         ${classNames?.input ?? ''} ${errorClass}`}
         {...validation}

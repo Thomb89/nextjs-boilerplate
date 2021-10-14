@@ -3,9 +3,9 @@ import { theme } from '../../tailwind.config';
 
 export const getChartColors = (isDark: boolean): Colors => [
   theme.extend.colors.primary[isDark ? 300 : 500],
-  theme.extend.colors.primary[isDark ? 200 : 800],
-  theme.extend.colors.primary[isDark ? 400 : 600],
-  theme.extend.colors.primary[isDark ? 100 : 900],
+  theme.extend.colors.primary[isDark ? 200 : 600],
+  theme.extend.colors.primary[isDark ? 400 : 300],
+  theme.extend.colors.primary[isDark ? 100 : 400],
   theme.extend.colors.primary[isDark ? 500 : 700],
 ];
 
@@ -27,6 +27,16 @@ export const getChartTheme = (isDark: boolean): Theme => ({
     ticks: {
       line: {
         stroke: theme.extend.colors.gray[isDark ? 800 : 400],
+      },
+    },
+  },
+  legends: {
+    hidden: {
+      symbol: {
+        fill: theme.extend.colors.gray[isDark ? 400 : 900],
+      },
+      text: {
+        fill: theme.extend.colors.gray[isDark ? 400 : 900],
       },
     },
   },

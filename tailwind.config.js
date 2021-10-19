@@ -73,6 +73,7 @@ const config = {
       colors: {
         gray: colors.warmGray,
         green: colors.green,
+        red: colors.red,
         primary: {
           100: "#e2d9d9",
           200: "#c6b3b3",

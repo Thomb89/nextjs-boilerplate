@@ -31,7 +31,7 @@ export type InputProps = {
     pattern?: string;
   };
   label: string;
-  children?: JSX.Element[];
+  children?: JSX.Element[] | JSX.Element;
 };
 
 export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, InputProps>(
@@ -126,9 +126,6 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
             onFocus={onFocus}
             className={`${classNames?.input ?? ''} ${errorClass}`}
             {...props}>
-            <option value="-" disabled>
-              -
-            </option>
             {children}
           </select>
         </fieldset>

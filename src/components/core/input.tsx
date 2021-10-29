@@ -114,7 +114,7 @@ export const Input = forwardRef<HTMLSelectElement | HTMLInputElement | null, Inp
 
     if (type === 'select')
       return (
-        <fieldset className={`flex flex-col ${classNames?.input ?? ''}`}>
+        <fieldset className={`flex flex-col ${classNames?.fieldSet ?? ''}`}>
           {labelElement}
           <select
             id={name}

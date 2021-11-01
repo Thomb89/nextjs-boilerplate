@@ -10,7 +10,7 @@ const { withSentryConfig } = require('@sentry/nextjs');
 const isProd = process.env.NODE_ENV === 'production';
 
 /**
- * @type {Partial<import('next/dist/server/config').NextConfig>}
+ * @type {Partial<import('next').NextConfig>}
  **/
 const moduleExports = {
   env: {

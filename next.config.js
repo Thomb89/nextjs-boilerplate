@@ -28,7 +28,7 @@ const moduleExports = {
       config.externals.push('encoding');
     }
 
-    config.experiments = { topLevelAwait: true };
+    config.experiments = { layers: true };
 
     return config
   },

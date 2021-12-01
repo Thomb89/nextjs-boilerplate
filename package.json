@@ -51,7 +51,7 @@
     "jest-mock-extended": "^2.0.2-beta2",
     "jest-watch-typeahead": "^0.6.4",
     "mutationobserver-shim": "^0.3.7",
-    "postcss": "^8.3.5",
+    "postcss": "^8.4.4",
     "prisma": "^3.0.1",
     "shelljs": "^0.8.4",
     "tailwindcss": "^2.2.16",

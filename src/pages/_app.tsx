@@ -3,7 +3,9 @@ import 'tailwindcss/tailwind.css';
 import { AppProps } from 'next/app';
 import { MenuBar } from '../components';
 import { Provider } from 'react-redux';
-import { store } from '../store';
+import { getStore } from '../store';
+
+export const store = getStore();
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

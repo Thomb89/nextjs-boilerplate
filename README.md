@@ -12,50 +12,10 @@ this boilerplate includes thw following packages:
 - [react-hook-form](https://react-hook-form.com/) (form state management)
 
 ## Setup your Project
-**1. Database**
-  - create your Database Schema in the **prisma/schema.prisma** file [(help can be found here)](https://www.prisma.io/docs/getting-started)
-  - generate the prisma client with `npm exec prisma generate`  
-  - you can create a seed file under [prisma/seed.ts](https://www.prisma.io/docs/guides/database/seed-database)
 
-**2. GraphQL**
-  - create your graphql schema (types / queries / mutations) under **src/graphql/schema**
-  - create your fragments / queries / mutations for the client under **src/graphql/client/gql**
-  - add type mappings from *graphql* to *@prisma/client* in the **codegen.yml** file [(look for help here)](https://www.graphql-code-generator.com/docs/plugins/typescript-resolvers#use-your-model-types-mappers)
-  - generate typesafe graphql helpers with `npm run gql-generate`. This will create the file **src/graphql/generated.tsx**
-  - create your Graphql-Resolvers under **src/graphql/resolvers/**
-  ```typescript
-  // query.ts
-
-  import { QueryResolvers } from '../generated';
-
-  export const QueryResolver: QueryResolvers = {
-    resolver: async ({}, {}, {prisma, authorized}) => {}
-  }
-  ```
-  ```typescript
-  // type.ts
-  /** 
-   * type can be any GraphQL type e.g. User, Post, etc.
-   * this example leverages prismas include mechanism
-   * to add additional fields to the resolvers
-  */
-  import { TypeResolvers } from '../generated';
-  import { Prisma } from '@prisma/client';
-
-  const parent = Prisma.validator<Prisma.typeArgs>()({
-    include: {
-      table_1: true
-    },
-  });
-  type parent = Prisma.typeGetPayload<typeof parent>;
-
-  export const ServiceResolver: ServiceResolvers<Context, Partial<parent>> = {
-    resolver: async ({ table_1 }, {}, { prisma }) => {}
-  }
-  ```
-
-**3. Pages + Components**
+**1. Pages + Components**
   - create your pages and components
+  - for global state us redux-toolkit
   - for forms, react-hook-form is preinstalled
   - TippyJs can be used for tooltips
   - headless-UI can be used for Dialogs, etc.

@@ -1,6 +1,4 @@
 import { ArrowSmRightIcon, TrendingDownIcon, TrendingUpIcon } from '@heroicons/react/solid';
-import { getYear } from 'date-fns';
-import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 
 type content = {

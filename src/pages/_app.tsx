@@ -2,19 +2,19 @@ import 'tailwindcss/tailwind.css';
 
 import { AppProps } from 'next/app';
 import { MenuBar } from '../components';
-import { ApolloProvider } from '@apollo/client';
-import { getApolloClient } from '../graphql/client';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <ApolloProvider client={getApolloClient()}>
+    <Provider store={store}>
       <MenuBar />
       <div className="pt-16 md:px-6 lg:px-16 xl:px-24 md:py-24 flex justify-center">
         <div className="w-full max-w-6xl">
           <Component {...pageProps} />
         </div>
       </div>
-    </ApolloProvider>
+    </Provider>
   );
 };
 

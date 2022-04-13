@@ -1,20 +1,19 @@
 import { render, RenderResult } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer, RootState } from '../store';
+import { getStore } from '../store';
 
 export type renderProps = {
-  store?: Partial<RootState>;
+  store?: ReturnType<typeof getStore>;
   component: JSX.Element;
 };
 
 export type result = {
   component: RenderResult;
-  store: ReturnType<typeof createStore>;
+  store: ReturnType<typeof getStore>;
 };
 
 const customRender = ({ component, store }: renderProps): result => {
-  const newStore = createStore(store);
+  const newStore = store ?? getStore();
 
   const wrapper: React.FC<{}> = ({ children }) => {
     return <Provider store={newStore}>{children}</Provider>;
@@ -27,8 +26,6 @@ const customRender = ({ component, store }: renderProps): result => {
     store: newStore,
   };
 };
-
-export const createStore = (baseState?: Partial<RootState>) => configureStore({ reducer: rootReducer, preloadedState: baseState as any });
 
 // re-export everything
 export * from '@testing-library/react';

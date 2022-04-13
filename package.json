@@ -3,103 +3,44 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "docker-compose up -d && node wait-for-postgres.js && prisma db push --skip-generate && prisma db seed --preview-feature && next dev && docker-compose down || docker-compose down",
+    "dev": "docker-compose up -d && node wait-for-postgres.js && echo 'add migration & seed logic here' && next dev && docker-compose down || docker-compose down",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest --colors --watch",
-    "test-ci": "jest --colors --ci --reporters=default --reporters=jest-html-reporters",
-    "gql-generate": "graphql-codegen --config codegen.yml",
-    "migrate-dev": "prisma migrate dev && prisma db seed --preview-feature"
+    "test-ci": "jest --colors --ci --reporters=default --reporters=jest-html-reporters"
   },
   "dependencies": {
-    "@apollo/client": "^3.4.15",
-    "@graphql-tools/merge": "^8.1.1",
-    "@headlessui/react": "^1.4.1",
-    "@heroicons/react": "^1.0.3",
-    "@nivo/core": "^0.73.0",
-    "@prisma/client": "^3.0.1",
-    "@sentry/nextjs": "^6.11.0",
-    "@tippyjs/react": "^4.2.5",
-    "apollo-server-micro": "^3.1.2",
-    "graphql": "^15.5.3",
-    "micro": "^9.3.4",
-    "next": "^12.0.2",
-    "next-auth": "^3.29.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-hook-form": "^7.14.1"
+    "@headlessui/react": "^1.5.0",
+    "@heroicons/react": "^1.0.6",
+    "@nivo/core": "^0.79.0",
+    "@reduxjs/toolkit": "^1.8.1",
+    "@sentry/nextjs": "^6.19.6",
+    "@tippyjs/react": "^4.2.6",
+    "next": "^12.1.5",
+    "next-auth": "^4.3.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-hook-form": "^7.29.0",
+    "react-redux": "^7.2.8"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^2.1.1",
-    "@graphql-codegen/typescript": "^2.2.2",
-    "@graphql-codegen/typescript-operations": "^2.1.3",
-    "@graphql-codegen/typescript-react-apollo": "^3.1.3",
-    "@graphql-codegen/typescript-resolvers": "^2.2.0",
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.2",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.4.1",
     "@types/react": "^17.0.19",
-    "@types/shelljs": "^0.8.9",
-    "autoprefixer": "^10.3.3",
-    "babel-jest": "^27.0.6",
-    "eslint": "^7.32.0",
-    "eslint-config-next": "^11.1.2",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.1.0",
-    "jest-html-reporters": "^2.1.6",
-    "jest-mock-extended": "^2.0.2-beta2",
-    "jest-watch-typeahead": "^0.6.4",
-    "mutationobserver-shim": "^0.3.7",
-    "postcss": "^8.4.4",
-    "prisma": "^3.0.1",
-    "shelljs": "^0.8.4",
-    "tailwindcss": "^2.2.16",
-    "ts-jest": "^27.0.5",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.4.2"
-  },
-  "babel": {
-    "presets": [
-      "next/babel"
-    ]
-  },
-  "jest": {
-    "verbose": true,
-    "clearMocks": true,
-    "testEnvironment": "jsdom",
-    "watchPlugins": [
-      "jest-watch-typeahead/filename",
-      "jest-watch-typeahead/testname"
-    ],
-    "collectCoverageFrom": [
-      "**/*.{js,jsx,ts,tsx}",
-      "!**/*.d.ts",
-      "!**/node_modules/**"
-    ],
-    "moduleNameMapper": {
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
-      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy",
-      "\\.(css|less)$": "identity-obj-proxy"
-    },
-    "preset": "ts-jest",
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/__tests__/__tests_util__/test-setup.ts"
-    ],
-    "testMatch": [
-      "**/__tests__/**/*.[jt]s?(x)"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/.next/",
-      "/__tests_util__/"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "babel-jest"
-    },
-    "transformIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "testTimeout": 10000
+    "@types/shelljs": "^0.8.11",
+    "autoprefixer": "^10.4.4",
+    "eslint": "^8.13.0",
+    "eslint-config-next": "^12.1.5",
+    "jest": "^27.5.1",
+    "jest-html-reporters": "^3.0.6",
+    "jest-mock-extended": "^2.0.5",
+    "jest-watch-typeahead": "^1.0.0",
+    "postcss": "^8.4.12",
+    "shelljs": "^0.8.5",
+    "tailwindcss": "^3.0.24",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
   }
 }

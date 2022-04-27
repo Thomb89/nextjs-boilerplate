@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { toast } from './index';
 
 // ====================================================================================
@@ -42,40 +42,30 @@ export type ToastProps = {
  */
 export const Toast: React.FC<ToastProps> = ({ type, className, toast, removeToast, animation, closeButton, messageButtonsWrapperClassName }) => {
   const [animationState, setAnimationState] = useState<string>(animation.startClassName);
+  const durationTimeout = useRef<{ timeout: NodeJS.Timeout | undefined }>({ timeout: undefined });
 
   const close = useCallback(() => {
-    toast.buttons?.onClose?.();
-    removeToast();
-  }, [removeToast, toast.buttons]);
+    setAnimationState(animation.startClassName);
+    if (durationTimeout.current.timeout) clearTimeout(durationTimeout.current.timeout);
+
+    setTimeout(() => {
+      toast.buttons?.onClose?.();
+      removeToast();
+    }, animation.duration);
+  }, [removeToast, toast.buttons, animation.duration, animation.startClassName, durationTimeout]);
 
   useEffect(() => {
     setAnimationState(animation.endClassName);
 
-    if (toast.autoClose === false) return;
+    if (toast.autoClose === false || durationTimeout.current.timeout) return;
 
-    const animationTimeout = setTimeout(() => {
-      setAnimationState(animation.startClassName);
-    }, toast.duration! - animation.duration);
-
-    const timeout = setTimeout(() => {
+    durationTimeout.current.timeout = setTimeout(() => {
       if (toast.buttons?.messageResult) toast.buttons.messageResult('no');
       close();
     }, toast.duration);
 
-    return () => {
-      clearTimeout(animationTimeout);
-      clearTimeout(timeout);
-    };
-  }, [
-    animation.duration,
-    animation.animationClassName,
-    animation.endClassName,
-    animation.startClassName,
-    close,
-    toast.autoClose,
-    toast.buttons,
-    toast.duration,
-  ]);
+    return () => {};
+  }, [durationTimeout, animation.endClassName, close, toast.autoClose, toast.buttons, toast.duration]);
 
   const displayCloseButton = useMemo(() => {
     let displayCloseButton = true;

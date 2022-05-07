@@ -1,19 +1,25 @@
 import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
+import Credentials, { CredentialInput } from 'next-auth/providers/credentials';
 
 export default NextAuth({
-  debug: process.env.NODE_ENV !== 'production',
-  secret: process.env.JWT,
   pages: {
     signIn: '/login',
   },
   session: {
-    jwt: true,
+    strategy: 'jwt',
   },
   providers: [
-    Providers.Credentials({
-      async authorize(credentials: { username: string; password: string }, _req) {
-        return null;
+    Credentials<Record<'username' | 'password', CredentialInput>>({
+      id: '',
+      name: '',
+      type: 'credentials',
+
+      async authorize(credentials, _req) {
+        if (!credentials) return null;
+      },
+      credentials: {
+        username: {},
+        password: {},
       },
     }),
   ],

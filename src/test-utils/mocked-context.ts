@@ -1,8 +1,8 @@
 import { mockDeep, MockProxy } from 'jest-mock-extended';
 import { PrismaClient } from '@prisma/client';
-import { Context } from '../../graphql/context';
+import { Context } from '../graphql/context';
 
-export type { Context } from '../../graphql/context';
+export type { Context } from '../graphql/context';
 
 type setReturnValueParams = {
   proxyFn: any;

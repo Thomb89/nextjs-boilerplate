@@ -8,11 +8,7 @@ export type renderProps = {
   component: JSX.Element;
 };
 
-export type result = {
-  component: RenderResult;
-};
-
-const customRender = ({ component, apolloMocks, apolloCache }: renderProps): result => {
+const customRender = ({ component, apolloMocks, apolloCache }: renderProps): RenderResult => {
   const wrapper: React.FC<{}> = ({ children }) => {
     return (
       <MockedProvider
@@ -27,9 +23,7 @@ const customRender = ({ component, apolloMocks, apolloCache }: renderProps): res
 
   const renderedComponent = render(component, { wrapper });
 
-  return {
-    component: renderedComponent,
-  };
+  return renderedComponent;
 };
 
 // re-export everything

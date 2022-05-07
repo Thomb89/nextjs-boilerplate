@@ -1,4 +1,4 @@
-import { createContext } from '../../graphql/context';
+import { createContext } from './context';
 
 describe('context', () => {
   it('should return a context Object', async () => {
